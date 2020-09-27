@@ -2,6 +2,7 @@ package com.capgemini;
 
 import java.util.*;
 
+
 public class AddressBookMain {
 	public String FIRST_NAME, LAST_NAME, EMAIL;
 	public String ADDRESS, CITY, STATE;
@@ -28,6 +29,12 @@ public class AddressBookMain {
 	public static void main(String[] args) {
 		System.out.println("Welcome to Address Book");
 		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the number of address books you want to add: ");
+		HashMap<String,ArrayList<AddressBookMain>> map = new HashMap<String,ArrayList<AddressBookMain>>(); 
+		int numberOfAddressBooks = Integer.parseInt(sc.nextLine());
+		for(int j=0;j<numberOfAddressBooks;j++) {
+		System.out.println("Enter the name of the address book:");
+		String bookName = sc.nextLine();
 		ArrayList<AddressBookMain> book = new ArrayList<AddressBookMain>();
 		System.out.println("Enter the Number of persons you want to add in Address book: ");
 		int number = Integer.parseInt(sc.nextLine());
@@ -53,11 +60,12 @@ public class AddressBookMain {
 			AddressBookMain contact = new AddressBookMain(firstName,lastName,Email,Address,city,state,zip,phoneNumber);
 			book.add(contact);
 		}
+		map.put(bookName, book);
+		}
 		sc.close();
-		int k = 1;
-		for(AddressBookMain b:book) {
-			System.out.println("The contact details of person "+(k)+" are: "+b);
-			k++;
+		for(Map.Entry<String,ArrayList<AddressBookMain>> entry:map.entrySet()) {
+			System.out.println("The details of Address Book "+ entry.getKey()+" is: ");
+			System.out.println(entry.getValue());
 		}
 	}
 }
