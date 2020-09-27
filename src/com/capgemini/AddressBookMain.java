@@ -44,6 +44,7 @@ public class AddressBookMain {
 			if(contact.get(i).FIRST_NAME.equals(name)) {
 				flag++;
 				contact.remove(i);
+				System.out.println("Successfully deleted");
 			}
 		}
 		sc.close();
